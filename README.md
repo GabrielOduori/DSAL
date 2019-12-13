@@ -3,7 +3,7 @@
 Learning data structures and algorithms by solving practical algorith and data structure problems. Begin each course by learning to solve defined problems related to a particular data structure and algorithm. Consequently, evaluate and assess different data structures and algorithms for any open-ended problem and implement a solution based on design choices.
 
 ## Structure
-### Welcome
+### Intro
 Get an overview of your program. Meet your instructors, and refresh your Python skills. Learn the framework to deconstruct any open-ended problem and then understand the concepts of time and space complexity.
 
 ### Data Structures
