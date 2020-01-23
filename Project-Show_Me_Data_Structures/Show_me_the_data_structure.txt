@@ -1,0 +1,34 @@
+## Problem 1
+This project is implemented using  an ordered OrderedDict(). which implements methods .popitem(last=False) thereby allowing for removing the first added element. 
+
+### Time and Space complexity
+The code runs in constant time O(1).For space complexity, it depends on the size of desired cache resulting  in O(n)
+## Problem 2
+This is implemented using recursion process, on a visit of each folder, on each folder we keep the files that match a required pattern and we keep on going to the next folder level structure by launching recursive calls to the function. 
+
+Complexity
+Time complexity, it takes linear time O(n). As for the space complexity, in this case, 
+it is directly dependent on the number of returns the function does.
+
+## Problem 3
+This is implemented by utilizing three 4 different classes namely, Node, Queue, Tree and a HuffmanEncoder giving a clean developmental approach.
+Complexity
+Time complexity depends on the size of the input string thereby giving a linear time O(n). Space complexity also depends on the size of input string to be decoded. 
+
+# Problem 4
+Implemented by using a recursive algorithm. 
+
+Complexity
+The time complexity is this implementation is dependent on the number of iterations run by the algorithm, in terms of number of groups
+and users in the group therefore taking a linear time O(n). Space complexity also depends on the number of outputs from the function hence O(n).
+
+## Problem 5
+This implementation includes a Blockchain class with an additional method called update block which updates the current block with a value.
+The time complexity of update_block is O(1) as it runs in constant time. Same applies to space complexity as it allocates a single memory all the time.
+
+## Problem 6 
+This problem is solved using a Linked list.
+Complexity
+Time complexity is linear O(n) depending on the size of the list.
+In respect to the _space time complexity, the temporary list created thereby all the lists created thereby O(n).
+
