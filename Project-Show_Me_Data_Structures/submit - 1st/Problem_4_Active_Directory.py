@@ -30,15 +30,14 @@ def is_user_in_group(user, group):
       group(class:Group): group to check user membership against
     """
     result = False
-
-    if user in group.get_users():
-        return True
-    # for u_User in group.get_users():
-    #     if u_User == user:
-    #         return True
+    for u_User in group.get_users():
+        if u_User == user:
+            return True
     for g_Group in group.get_groups():
         result |= is_user_in_group(user, g_Group)
     return result
+
+
 
 
 #Groups
@@ -49,6 +48,7 @@ child2 = Group("child2")
 
 sub_child11 = Group("subchild11")
 sub_child12 = Group("subchild12")
+
 
 
 #Users
@@ -86,42 +86,22 @@ sub_child12.add_user(sub_child12_user_1)
 sub_child12.add_user(sub_child12_user_2)
 
 
-# TEST CASES
+
+# Parent1 in Parent
 print ("Pass" if (is_user_in_group(parent_user_1, parent) == True) else "Fail")
-# Prints Pass
+
 
 print ("Pass" if (is_user_in_group(parent_user_2, parent) == True) else "Fail")
-# Prints pass
+
 
 print ("Pass" if (is_user_in_group(child1_user_1, parent) == True) else "Fail")
-# Prints pass
+
 
 print ("Pass" if (is_user_in_group(child1_user_2, parent) == True) else "Fail")
-# Prints pass
+
 
 print ("Pass" if (is_user_in_group(child2_user_1, parent) == True) else "Fail")
-#Prints pass
+
 
 print ("Pass" if (is_user_in_group(child2_user_2, parent) == True) else "Fail")
-# Prints Pass
-
-print("True" if(isinstance(parent,Group)) else "False")
-# Prints True
-
-print("True" if(isinstance(child1,Group)) else "False")
-# Prints True
-
-print("True" if(isinstance(parent_user_1,Group)) else "False")
-# Prints False
-
-# EDGE CASE
-print("True" if(isinstance("",Group)) else "False")
-# Prints False
-
-print ("True" if (is_user_in_group(child2_user_2, parent) == True) else "False")
-# Prints True
-
-
-
-
 

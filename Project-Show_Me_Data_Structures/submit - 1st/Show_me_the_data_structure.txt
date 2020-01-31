@@ -32,26 +32,3 @@ Complexity
 Time complexity is linear O(n) depending on the size of the list.
 In respect to the _space time complexity, the temporary list created thereby all the lists created thereby O(n).
 
-
-
-SOLUTION NOTES
-
-Problem 1
-code
-Text
-
-
-Problem 2
-
-Problem 3
-
-
-Problem 4
-
-
-
-Problem 5
-
-
-
-Problem 6

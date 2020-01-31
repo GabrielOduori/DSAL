@@ -30,26 +30,19 @@ class Blockchain:
     def __init__(self):
         self.current_block = None
 
-    def add_block (self, value):
+    def update_block (self, value):
         timestamp = time.gmtime()
         data = value
         previous_hash = self.current_block.hash if self.current_block else 0
         self.current_block = Block(timestamp, data, previous_hash)
-    
 
 blockchain = Blockchain()
 
-blockchain.add_block (10)
+blockchain.update_block (10)
 print(blockchain.current_block)
 
-blockchain.add_block (20)
+blockchain.update_block (20)
 print(blockchain.current_block)
 
-blockchain.add_block (30)
+blockchain.update_block (30)
 print(blockchain.current_block)
-
-
-blockchain.add_block (60)
-print(blockchain.current_block)
-for node in self.current_block:
-    print(node)
