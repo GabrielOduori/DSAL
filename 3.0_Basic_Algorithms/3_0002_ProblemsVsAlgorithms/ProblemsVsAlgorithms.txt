@@ -1,0 +1,33 @@
+# Problem 1
+
+## Design
+
+We are searching for a square root of a number and therefore we assumne that 
+from the given number back to the root, all numbers in the array are all sorted.
+We therefore want to split the number into half an d check if the munber in the middle
+could be the root we are looking for.We do this by multiplying the middle by itself
+and comaring the product with the number we have. If not, depending on whether the
+product is smaller or larger than our number, we shift the mddle and repeat the test again.
+This is a classic case of binary search.
+
+Algorithm:
+1) Start with ‘start’ = 0, end_value = ‘number’,
+2) While ‘start_value ’ is smaller than or equal to ‘end_value’.
+      a) Compute ‘mid_value’ as (start_value + end_value)/2
+      b) compare mid_value*mid_value with number.
+      c) If x is equal to mid_value*mid_value, return mid_value.
+      d) If x is greater, do binary search between mid_value+1 and end_value. In this case, we also update ans (Note that we need floor).
+      e) If x is smaller, do binary search between start and mid_value
+
+Below is the implementation of above idea.
+
+## Time Complexity
+
+The time comlexity for this operation is O(logn) as this is a case of binary
+search where the sorted array is divided into half at every iteration.
+
+
+# Proble 2
+
+
+

@@ -19,9 +19,6 @@ class Group(object):
     def get_name(self):
         return self.name
 
-
-
-
 def is_user_in_group(user, group):
     """
     Return True if user is in the group, False otherwise.
@@ -31,15 +28,23 @@ def is_user_in_group(user, group):
     """
     result = False
 
+    # if ((not isinstance(group, Group)) or (not user)):
+
+    if not isinstance(group, Group):
+        print('Group not valid!')
+        return False
+
     if user in group.get_users():
         return True
-    # for u_User in group.get_users():
-    #     if u_User == user:
-    #         return True
+    
+    if not user:
+        print('User not valid!')
+        return False
+
+
     for g_Group in group.get_groups():
         result |= is_user_in_group(user, g_Group)
     return result
-
 
 #Groups
 parent = Group("parent")
@@ -78,50 +83,46 @@ child2.add_user(child2_user_1)
 child2.add_user(child2_user_2)
 
 child1.add_group(sub_child11)
-sub_child11.add_user(sub_child11_user_1)
+child1.add_group(sub_child12)
+
 sub_child11.add_user(sub_child11_user_2)
 
-child1.add_group(sub_child12)
-sub_child12.add_user(sub_child12_user_1)
-sub_child12.add_user(sub_child12_user_2)
 
 
 # TEST CASES
-print ("Pass" if (is_user_in_group(parent_user_1, parent) == True) else "Fail")
-# Prints Pass
-
-print ("Pass" if (is_user_in_group(parent_user_2, parent) == True) else "Fail")
-# Prints pass
-
-print ("Pass" if (is_user_in_group(child1_user_1, parent) == True) else "Fail")
-# Prints pass
-
-print ("Pass" if (is_user_in_group(child1_user_2, parent) == True) else "Fail")
-# Prints pass
-
-print ("Pass" if (is_user_in_group(child2_user_1, parent) == True) else "Fail")
-#Prints pass
-
-print ("Pass" if (is_user_in_group(child2_user_2, parent) == True) else "Fail")
-# Prints Pass
-
-print("True" if(isinstance(parent,Group)) else "False")
-# Prints True
-
-print("True" if(isinstance(child1,Group)) else "False")
-# Prints True
-
-print("True" if(isinstance(parent_user_1,Group)) else "False")
+print('TEST CASES')
+print(is_user_in_group(parent_user_1, child1))
 # Prints False
+
+print(is_user_in_group(parent_user_2, parent))
+# Prints True
+
+print(is_user_in_group(child2_user_2, parent))
+# Prints True
+
+print(is_user_in_group(sub_child11_user_2, group=sub_child11))
+# Prints true
 
 # EDGE CASE
-print("True" if(isinstance("",Group)) else "False")
-# Prints False
-
-print ("True" if (is_user_in_group(child2_user_2, parent) == True) else "False")
+print('EDGDE CASES')
+print('case1')
+print (is_user_in_group(child2_user_2, parent))
 # Prints True
+print('case2')
+print(is_user_in_group(user='', group=parent))
+# Prints User not valid!
+# Prints False
+print('case3')
+print(is_user_in_group(child1_user_1, group=child1))
+# Prints True
+print('case4')
+print(is_user_in_group('', group=sub_child11))
+# Prints User not valid
+# Prints False
+print('case5')
+is_user_in_group('', group='')
+# Prints Group not valid!
 
-
-
-
-
+print('case6')
+is_user_in_group('', '')
+# Prints Group not valid!

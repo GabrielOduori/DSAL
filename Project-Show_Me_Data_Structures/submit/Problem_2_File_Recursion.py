@@ -22,17 +22,30 @@ def find_files(suffix, path):
     Returns:
        a list of paths
   """
-  if not os.path.isdir(path):
+  result = []
+  if os.path.isfile(path):
+    return path
+
+  # if not os.path.isdir(path) and os.path.isfile(path):
+  #   # print(path)
+  #   return path
+
+  if not os.path.isdir(path):# or not os.path.isfile(path):
     return 'Not a directory'
+
+
 
   path_list = os.listdir(path)
 
-  result = []
+  
 
   for path_item in path_list:
     path_item = os.path.join(path,path_item)
+  
     if os.path.isdir(path_item):# Checking if path is a directory
-      result += find_files(suffix,path_item) 
+      result += find_files(suffix,path_item)
+
+
     if os.path.isfile(path_item) and path_item.endswith(suffix):#If path is a file and ends with the suffix
       result.append(path_item)
   return result
@@ -47,6 +60,10 @@ print("TEST 2")
 print(find_files('.', './testdir/'))
 # []
 
+# EDGE Case test
 print("TEST 3")
 print(find_files('', ''))
 # Not a directory
+
+print("TEST 4")
+print(find_files('.c', './testdir/testdir/subdir1/a.c'))

@@ -51,7 +51,7 @@ class Queue(object):
 
     def fuse_step(self) -> None:
         """
-        Applies fusion of two nodes present on the queue; see Node.combine_node()
+        Applies fusion of two nodes present on the queue;
         :return: None
         """
         low_node_1 = self.arr.pop()
@@ -193,11 +193,15 @@ def huffman_encoding(data: str) -> (str, HuffmanEncoder):
     Huffman encoding method which takes a text and returns encoded text and 
     a relevant corresponding text encoder.
     """
-
+    if not data:
+        print('No dta assigned')
+        return False
     if len(data) == 0:
         print("No string to encode!")
-        return
-
+        return False
+    elif data =='':
+        print('Empty String')
+        return False
     else:
         temp_queue = Queue(string=data)
         temp_tree = Tree(queue=temp_queue)
@@ -273,7 +277,7 @@ if __name__ == "__main__":
     print("TEST 3: Testing edge case")
 
 
-    a_great_sentence = '  '
+    a_great_sentence = 
 
     print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
    
