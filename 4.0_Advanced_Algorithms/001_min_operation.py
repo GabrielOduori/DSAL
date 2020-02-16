@@ -15,16 +15,26 @@ step 5 ==> 8 + 1 = 9
 step 6 ==> 9 * 2 = 18
 """
 
-def min_operation():
+def min_operations(target):
     """
     Return number of steps taken to reach a target number
     input: target number (as an integer)
     output: number of steps (as an integer)
     """
 
-    pass
+    num_steps = 0
+    
+    # start backwards from the target
+    # if target is odd --> subtract 1
+    # if target is even --> divide by 2
+    while target != 0:
+        if target % 2 == 0:
+            target = target // 2
 
-
+        else:
+            target = target - 1
+        num_steps += 1
+    return num_steps
 
 # Test Cases
 
