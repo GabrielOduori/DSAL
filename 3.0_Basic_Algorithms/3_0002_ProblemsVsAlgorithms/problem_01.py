@@ -52,18 +52,38 @@ def sqrt(number):
     return result
         
 
-
+print('Test 1')
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
+# Prints Pass
+
+print('Test 2')
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
+# Prints Pass
+
+print('Test 3')
 print ("Pass" if  (4 == sqrt(16)) else "Fail")
+# Prints Pass
+
+print('Test 4')
 print ("Pass" if  (1 == sqrt(1)) else "Fail")
+# Prints Pass
+
+print('Test 5')
 print ("Pass" if  (5 == sqrt(27)) else "Fail")
+# Prints Pass
 
 
 # Edge case
-print('Edge case')
+print('Edge Cases')
 print ("Pass" if  (1 == sqrt(-1)) else "Fail")
+# Prints Fail
 
-
+print('Test 6')
 print ("Pass" if  ('b' == sqrt('')) else "Fail")
+# Prints Only Integers
+# Prints Fail
+
+print('Test 7')
 print ("Pass" if  ('' == sqrt('')) else "Fail")
+# Prints Only Integers
+# Prints Fail

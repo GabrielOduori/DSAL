@@ -2,12 +2,12 @@
 
 ## Design
 
-We are searching for a square root of a number and therefore we assumne that 
+We are searching for a square root of a number and therefore we assume that 
 from the given number back to the root, all numbers in the array are all sorted.
-We therefore want to split the number into half an d check if the munber in the middle
-could be the root we are looking for.We do this by multiplying the middle by itself
-and comaring the product with the number we have. If not, depending on whether the
-product is smaller or larger than our number, we shift the mddle and repeat the test again.
+We therefore want to split the number into half and check if the member in the middle
+could be the root we are looking for. We do this by multiplying the middle by itself
+and comparing the product with the number we have. If not, depending on whether the
+product is smaller or larger than our number, we shift the middle and repeat the test again.
 This is a classic case of binary search.
 
 Algorithm:
@@ -21,13 +21,178 @@ Algorithm:
 
 Below is the implementation of above idea.
 
-## Time Complexity
+## Complexity
 
-The time comlexity for this operation is O(logn) as this is a case of binary
+* Time
+
+The time complexity for this operation is O(logn) as this is a case of binary
 search where the sorted array is divided into half at every iteration.
 
+* Space
+Space complexity for this problem is in the order of O(n) where n is the length of the integer.
 
-# Proble 2
+# Problem 2
+
+## Design
+In this problem, the requirement is to find an element in a sorted rotated array. To solve this problem,
+we take advantage of properties of a rotated array. This property is that while we know the array is 
+already sorted, because it is rotated, what we want to do then is to find the pivot, which is the point
+at which there will be a breaking the consistent increase of elements value. 
+
+https://en.wikipedia.org/wiki/Binary_search_algorithm
 
 
+1) Find middle point mid = (low + high)/2
+2) If key is present at middle point, return mid.
+3) Else If nput_list[l..mid] is sorted
+    a) If key to be searched lies in range from input_list[l]
+       to input_list[mid], recur for input_list[low..mid].
+    b) Else recur for input_list[mid+1..high]
+4) Else (input_list[mid+1..high] must be sorted)
+    a) If key to be searched lies in range from arr[mid+1]
+       to input_list[high], recur for input_list[mid+1..high].
+    b) Else recur for input_list[low..mid] 
 
+## Complexity
+
+* Time 
+The time complexity for this operation is O(logn) as this is a case of binary
+search where the sorted array is divided into half at every iteration.
+
+* Space
+
+Space complexity is n the order of O(1) as no new list is created nor extra space is required during the operations.
+
+# Problem 3
+
+### Design
+
+The maximum number in this array can found by first sorting the array in either ascending or descending order
+then grabbing the first element at the first even position and adding to the first part of the number and the second largest element 
+at the first odd index position and adding to the second part until we get to the last element. What we immediately come out 
+is the pattern of the odd numbers going to one side and even numbers to the other side. We use this property to find
+out the two maximum numbers from an array. The choice s data structure in used in this example if an array
+
+
+### Complexity
+
+* Time
+The first part of the operation is to sort the unsorted array to  a descending order. In this problem, we design a merger sort
+Algorithm whose average time complexity is in the order of O(nLogn) where _n_ is the length of the unsorted array.
+
+The rearranging part of the solution takes linear time due to the for loop that scans the whole of the sorted array looking
+for element at either even or odd index position. Time complexity for this part is linear time O(n)
+
+Total time complexity there comes to O(nLogn) + O(n) which eventually evaluates to O(nLogn).
+
+* Space
+In terms of space complexity, we create two additional arrays x and y which will hold the numbers as they get evaluated.
+in this case, the space complexity remains O(n) since we are using arrays where _n_ is the length of the array.
+
+
+# Problem 4
+
+### Design 
+Some of the ideas for this solution comes from notes in https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+
+This problem is viewed as rearranging elements in an array by strictly classifying each element in three 
+categories of low, middle and high. The solution is then to have an array where all the "low" elements 
+become before "middle" elements and finally the "high" element at the end of the array.
+
+The procedure for three-way-partition(input list : array of values, mid : value):
+    i ← 0 # low
+    j ← 0 # middle
+    k ← len(input_list)-1 # high
+
+    while j < k:
+        if input_list[j] < mid:
+            swap input_list[i] and input_list[j]
+            i ← i + 1
+            j ← j + 1
+        else if input_list[j] > mid:
+            k ← k - 1
+            swap input_list[j] and input_list[k]
+        else:
+            j ← j + 1
+
+
+### Complexity
+
+* Time
+
+The solution is done in a singe array traversal and therefore the time complexity is in the 
+order of O(n)
+
+* Space
+
+Space complexity for this example is in the order of O(i) as all elements are swapped in place and there is no need to create extra data structure or space
+to hold any extra elements.
+
+
+# Problem 5
+
+## Design
+The design has been inspired by material from the following links:
+https://www.youtube.com/watch?v=o6563NNbdtg
+https://medium.com/@info.gildacademy/a-simpler-way-to-implement-trie-data-structure-in-python-efa6a958a4f2
+https://anvil.works/forum/t/python-trie-implementation-efficiently-search-trie-based-on-prefixes/3074
+https://www.geeksforgeeks.org/trie-insert-and-search/
+https://towardsdatascience.com/implementing-a-trie-data-structure-in-python-in-less-than-100-lines-of-code-a877ea23c1a1
+
+This problem is focused on the development of the of a trie data structure which is a tree-like data structure whose
+nodes store the letters of an alphabet. Tries provides for a good  ratio between  time and space complexity and structuring the nodes in a particular way,
+ words and strings can be retrieved from the structure by traversing down a branch path of the tree.
+
+Specifically, two classes have been created as follows:
+A `Trie` class that contains the root node (empty string)
+A `TrieNode` class that exposes the general functionality of the Trie, like inserting a word or finding the node which represents a prefix.
+
+## Complexity
+
+* Time 
+Add, search and delete operations are done in the order of O(k) time at average time where _k_ is length of key.
+
+* Space
+For space complexity, the worst case, would be when we have a word with no common characters between them, hence having, a node for each letter thereby 
+space complexity in the order of O(n). This keeps growing as new nodes are added to the trie thereby taking more space and memory.
+
+
+# Problem 6 
+
+
+## Design 
+https://wiki.analytica.com/index.php/INF,_Nan,_Zero_and_IEEE/SANE_arithmetic
+
+This problem is about finding the maximum and minimum values from an array. With that in mind, we traverse the array comparing elements if they are either the 
+largest and smallest and updating the pointers to those values are we move across the entire length of the array. To achieve this, we only traverse the array one time
+and updates the maximum and minimum values. That’s all.
+
+
+## Complexity
+
+* Time
+In this problem, the solution makes a single transversal of the input array of integers and therefore time complexity will be dependent on the 
+length of the input result in the order of O(n) where _n_ is the length of the input. 
+
+
+* Space
+
+For space complexity considering that we only have a single pair of pointers and therefore does not depend on the input array length
+and therefore the complexity is in the order of O(1).
+
+
+# Problem 7
+## Design 
+
+This another example of a trie data structure but instead of text, working with a hierarchy of web pages and not words as compared to problem 5.
+This is also an example of a design choice between space and time complexity.
+
+## Complexity
+
+* Time
+Add, search and delete operations are done in the order of O(k) time at average time where _k_ is length of key.
+
+* Space
+
+For space complexity of this problem, the worst case would be when we are having path with no similar names therefore node for every path block resulting 
+in the worst case in the order of O(n) where _n_ is the number of different paths in the trie. Average case would in the order of O(1) if there was only a single folder name.
