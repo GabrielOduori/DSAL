@@ -43,9 +43,9 @@ def coin_change(coins, amount):
     # return -1 when no change found
     return -1 if res == float('inf') else res
 
+# Solution Two
 
-
-
+"""
 # Solution Two
 
 # We initiate F[Amount] to be float('inf') and F[0] = 0
@@ -72,7 +72,7 @@ def coin_change(coins, amount):
         return -1
     return res[amount]
         
-
+"""
 
 
 
