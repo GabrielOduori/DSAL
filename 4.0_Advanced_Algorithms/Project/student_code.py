@@ -8,6 +8,8 @@ from collections import heapq
 class Graph:
   def __init__(self):
     self.edges  = {}
+    self.road = {}
+    self.
 
 
   def neigbours(self, id):
@@ -39,9 +41,24 @@ def heuristic(a,b):
 
 
 def shortest_path(M,start,goal):
+
   """
   Implementng A* Search
   """
+  frontier  = PriorityQueue()
+  frontier.put(start,0)
+
+  come_from = {}
+  cost_so_far  = {}
+
+  came_from[start] = None
+  cost_so_far[start] = 0
+
+  while not frontie.empty():
+    current = frontier.get()
+    
+
+
 
 
 
