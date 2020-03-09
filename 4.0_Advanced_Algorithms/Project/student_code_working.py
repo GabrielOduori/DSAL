@@ -48,7 +48,7 @@ def euclidean_distance():
 
 
 
-def esimated_distance():
+def estimated_distance():
   """
   Estimated distance from the start.
   """
@@ -62,3 +62,11 @@ def shortest_path(M,start,goal):
   """
   print("shortest path called")
   return
+
+
+class Path:
+  """
+  Path constructor object
+  """
+
+  def __init__()
