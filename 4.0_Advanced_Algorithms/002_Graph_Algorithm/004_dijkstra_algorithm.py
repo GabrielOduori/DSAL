@@ -93,3 +93,8 @@ def dijkstra(start_node, end_node):
                     distance_dict[edge.node] = new_node_distance
     
     return shortest_path_to_node[end_node]
+
+
+
+
+print(dijkstra(node_a,node_t))
