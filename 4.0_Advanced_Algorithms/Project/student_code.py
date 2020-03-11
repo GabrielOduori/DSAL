@@ -3,31 +3,29 @@ start - The "start" node for the search algorithm.
 goal - The "goal" node.
 path - An array of integers which corresponds to a valid sequence of intersection visits on the map.
 """
-from collections import heapq
+import heapq
 
-class Graph:
-  def __init__(self):
-    self.edges  = {}
-    self.road = {}
-    self.
-
-
-  def neigbours(self, id):
-    return self.edges[id]
-
+# Import graph/map from helper file
+# from helpers import *
 
 class PriorityQueue:
     def __init__(self):
         self.elements = []
-    
+
+    @property
     def empty(self):
-        return len(self.elements) == 0
+        # return len(self.elements) == 0
+        return not self.elements # This will not be true for an empty elements
     
-    def put(self, item, priority):
+    def push(self, item, priority):
         heapq.heappush(self.elements, (priority, item))
     
-    def get(self):
-        return heapq.heappop(self.elements)[1]
+    def pop(self):
+        return heapq.heappop(self.elements)
+
+    def __repr__(self):
+      return repr(self.elements)
+
 
 
 
@@ -38,13 +36,68 @@ def heuristic(a,b):
 
   return abs(x1-x2) + abs(y1-y2)
 
-
+M = Map()
 
 def shortest_path(M,start,goal):
 
+
   """
-  Implementng A* Search
+  OPEN = priority queue containing START
+  CLOSED = empty set
+  while lowest rank in OPEN is not the GOAL:
+    current = remove lowest rank item from OPEN
+    add current to CLOSED
+    for neighbors of current:
+      cost = g(current) + movementcost(current, neighbor)
+      if neighbor in OPEN and cost less than g(neighbor):
+        remove neighbor from OPEN, because new path is better
+      if neighbor in CLOSED and cost less than g(neighbor): ⁽²⁾
+        remove neighbor from CLOSED
+      if neighbor not in OPEN and neighbor not in CLOSED:
+        set g(neighbor) to cost
+        add neighbor to OPEN
+        set priority queue rank to g(neighbor) + h(neighbor)
+        set neighbor's parent to current
+
+  reconstruct reverse path from goal to start
+  by following parent pointers
   """
+  frontier = PriorityQueue()
+  frontier.put(start, 0)
+
+  came_from = {}
+  cost_so_far = {}
+
+  came_from[start] = None
+  cost_so_far[start] = 0
+
+  while not frontier.empty():
+    current= frontier.get()
+
+    # Testing for early exit
+    if current == goal:
+      break
+
+    for next in M.intersection(current):
+      new_cost = cost_so_far[current]+M.cost(current. next)
+      if next not in cost_so_far or new_cost < cost_so_far[next]:
+        cost_so_far[next] = new_cost
+        priority = new_cost + heuristic(goal, next)
+        frontier.put(next, priority)
+        came_from[next] = current
+
+
+  
+
+
+
+  # Check if the start is the same as the goal
+  if start== goal:
+    return [start]
+
+  M.intersection
+  M.roads
+
   frontier  = PriorityQueue()
   frontier.put(start,0)
 
@@ -56,7 +109,7 @@ def shortest_path(M,start,goal):
 
   while not frontie.empty():
     current = frontier.get()
-    
+
 
 
 
