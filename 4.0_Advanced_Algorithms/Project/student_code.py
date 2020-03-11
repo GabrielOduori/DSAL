@@ -8,7 +8,7 @@ import heapq
 # Import graph/map from helper file
 # from helpers import *
 
-class PriorityQueue:
+class PriorityQueue(object):
     def __init__(self):
         self.elements = []
 
@@ -26,6 +26,11 @@ class PriorityQueue:
     def __repr__(self):
       return repr(self.elements)
 
+def euclidean_distance(goal):
+  """
+  The Euclidean distance, derived from the Pythagorean theorem,states that distance
+  = √((difference in x)2 + (difference in y)).
+  """
 
 
 
@@ -63,7 +68,7 @@ def shortest_path(M,start,goal):
   by following parent pointers
   """
   frontier = PriorityQueue()
-  frontier.put(start, 0)
+  frontier.push(start, 0)
 
   came_from = {}
   cost_so_far = {}
@@ -71,12 +76,12 @@ def shortest_path(M,start,goal):
   came_from[start] = None
   cost_so_far[start] = 0
 
-  while not frontier.empty():
-    current= frontier.get()
+  while not frontier.empty:
+    current= frontier.pop()
 
     # Testing for early exit
     if current == goal:
-      break
+      return current
 
     for next in M.intersection(current):
       new_cost = cost_so_far[current]+M.cost(current. next)
@@ -87,32 +92,19 @@ def shortest_path(M,start,goal):
         came_from[next] = current
 
 
-  
+  # Draw path working backwards from the end to front
 
+  def node_to_path(node):
+    path = []
 
+    # work backwards from end to front
 
-  # Check if the start is the same as the goal
-  if start== goal:
-    return [start]
+    while node.parent is not None:
+      node = node.parent
+      path.append(node)
 
-  M.intersection
-  M.roads
-
-  frontier  = PriorityQueue()
-  frontier.put(start,0)
-
-  come_from = {}
-  cost_so_far  = {}
-
-  came_from[start] = None
-  cost_so_far[start] = 0
-
-  while not frontie.empty():
-    current = frontier.get()
-
-
-
-
+      path.reverse()
+      return path
 
 
   print("shortest path called")
