@@ -105,6 +105,10 @@ def shortest_path(M,start,goal):
 
       path.reverse()
       return path
+      
+
+
+
 
 
   print("shortest path called")
