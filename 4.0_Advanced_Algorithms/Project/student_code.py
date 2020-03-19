@@ -6,7 +6,7 @@ path - An array of integers which corresponds to a valid sequence of intersectio
 import heapq
 
 # Import graph/map from helper file
-# from helpers import *
+from helpers import *
 
 class PriorityQueue(object):
     def __init__(self):
@@ -26,25 +26,9 @@ class PriorityQueue(object):
     def __repr__(self):
       return repr(self.elements)
 
-def euclidean_distance(goal):
-  """
-  The Euclidean distance, derived from the Pythagorean theorem,states that distance
-  = √((difference in x)2 + (difference in y)).
-  """
-
-
-
-
-def heuristic(a,b):
-  (x1,y1)  = a
-  (x2,y2)  = b
-
-  return abs(x1-x2) + abs(y1-y2)
-
-M = Map()
-
 def shortest_path(M,start,goal):
 
+M = Map()
 
   """
   OPEN = priority queue containing START
@@ -80,16 +64,7 @@ def shortest_path(M,start,goal):
     current= frontier.pop()
 
     # Testing for early exit
-    if current == goal:
-      return current
 
-    for next in M.intersection(current):
-      new_cost = cost_so_far[current]+M.cost(current. next)
-      if next not in cost_so_far or new_cost < cost_so_far[next]:
-        cost_so_far[next] = new_cost
-        priority = new_cost + heuristic(goal, next)
-        frontier.put(next, priority)
-        came_from[next] = current
 
 
   # Draw path working backwards from the end to front
