@@ -20,7 +20,8 @@ def shortest_path(M,start,goal):
         current = frontier.get()
 
         if current == goal:
-            generate_path(came_from, start, goal)
+            break
+            
 
         for node in M.roads[current]:
             updated_cost = cost_so_far[current] + heuristic(M.intersections[current], M.intersections[node])
