@@ -1,99 +1,50 @@
-"""
-start - The "start" node for the search algorithm.
-goal - The "goal" node.
-path - An array of integers which corresponds to a valid sequence of intersection visits on the map.
-"""
-import heapq
+# Code inspitaion borroweed from https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-# Import graph/map from helper file
-from helpers import *
 
-class PriorityQueue(object):
-    def __init__(self):
-        self.elements = []
 
-    @property
-    def empty(self):
-        # return len(self.elements) == 0
-        return not self.elements # This will not be true for an empty elements
-    
-    def push(self, item, priority):
-        heapq.heappush(self.elements, (priority, item))
-    
-    def pop(self):
-        return heapq.heappop(self.elements)
 
-    def __repr__(self):
-      return repr(self.elements)
+import math
+#  Using the function-based interface provided by heapq instead of building a class-based interface.
+from queue import PriorityQueue
+
 
 def shortest_path(M,start,goal):
+    
+    frontier= PriorityQueue()
+    frontier.put(start, 0)
+    
+    prev = {start: None}
+    score = {start: 0}
 
-M = Map()
+    while not frontier.empty():
+        current = frontier.get()
 
-  """
-  OPEN = priority queue containing START
-  CLOSED = empty set
-  while lowest rank in OPEN is not the GOAL:
-    current = remove lowest rank item from OPEN
-    add current to CLOSED
-    for neighbors of current:
-      cost = g(current) + movementcost(current, neighbor)
-      if neighbor in OPEN and cost less than g(neighbor):
-        remove neighbor from OPEN, because new path is better
-      if neighbor in CLOSED and cost less than g(neighbor): ⁽²⁾
-        remove neighbor from CLOSED
-      if neighbor not in OPEN and neighbor not in CLOSED:
-        set g(neighbor) to cost
-        add neighbor to OPEN
-        set priority queue rank to g(neighbor) + h(neighbor)
-        set neighbor's parent to current
+        if current == goal:
+            generate_path(prev, start, goal)
 
-  reconstruct reverse path from goal to start
-  by following parent pointers
-  """
-  frontier = PriorityQueue()
-  frontier.push(start, 0)
+        for node in M.roads[current]:
+            updateScore = score[current] + heuristic(M.intersections[current], M.intersections[node])
+            
+            if node not in score or updateScore < score[node]:
+                score[node] = updateScore
+                totalScore = updateScore + heuristic(M.intersections[current], M.intersections[node])
+                frontier.put(node, totalScore)
+                prev[node] = current
 
-  came_from = {}
-  cost_so_far = {}
-
-  came_from[start] = None
-  cost_so_far[start] = 0
-
-  while not frontier.empty:
-    current= frontier.pop()
-
-    # Testing for early exit
+    return generate_path(prev, start, goal)
 
 
-
-  # Draw path working backwards from the end to front
-
-  def node_to_path(node):
-    path = []
-
-    # work backwards from end to front
-
-    while node.parent is not None:
-      node = node.parent
-      path.append(node)
-
-      path.reverse()
-      return path
-      
+#Calculate heuristic
+def heuristic(start, goal):
+    return math.sqrt(((start[0] - goal[0]) ** 2) + ((start[1] - goal[1]) ** 2))
 
 
-
-
-
-  print("shortest path called")
-  return
-
-
-
-path = shortest_path(map_40, 5, 34)
-if path == [5, 16, 37, 12, 34]:
-    print("great! Your code works for these inputs!")
-else:
-    print("something is off, your code produced the following:")
-    print(path)
+#returning distance from start to goal
+def generate_path(prev, start, goal):
+    current = goal
+    path = [current]
+    while current != start:
+        current = prev[current]
+        path.append(current)
+    path.reverse()
+    return path
