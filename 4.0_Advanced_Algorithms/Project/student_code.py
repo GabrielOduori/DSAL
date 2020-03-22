@@ -24,7 +24,7 @@ def shortest_path(M,start,goal):
             
 
         for node in M.roads[current]:
-            updated_cost = cost_so_far[current] + heuristic(M.intersections[current], M.intersections[node])
+            updated_cost = cost_so_far[current] + heuristic(M.intersections[current], M.intersections[node]) + heuristic(M.intersection[node],M.intersetion[goal])
             
             if node not in cost_so_far or updated_cost < cost_so_far[node]:
                 cost_so_far[node] = updated_cost
@@ -39,6 +39,7 @@ def shortest_path(M,start,goal):
 #Calculate heuristic
 def heuristic(start, goal):
     return math.sqrt(((start[0] - goal[0]) ** 2) + ((start[1] - goal[1]) ** 2))
+    return math.sqrt(((current-node) ** 2) + ((node - goal) ** 2))
 
 
 
