@@ -39,7 +39,6 @@ def shortest_path(M,start,goal):
 #Calculate heuristic
 def heuristic(start, goal):
     return math.sqrt(((start[0] - goal[0]) ** 2) + ((start[1] - goal[1]) ** 2))
-    return math.sqrt(((current-node) ** 2) + ((node - goal) ** 2))
 
 
 
