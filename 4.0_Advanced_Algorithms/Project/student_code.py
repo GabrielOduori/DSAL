@@ -9,6 +9,9 @@ Using the function-based interface provided by heapq instead of building a class
 
 
 def shortest_path(M,start,goal):
+    """
+    Implemeting A* Algorithm
+    """
     
     frontier= PriorityQueue()
     frontier.put(start, 0)
